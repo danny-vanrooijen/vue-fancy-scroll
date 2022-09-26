@@ -54,8 +54,14 @@ const setSectionStyling = computed(() => {
   classes.value.push(props.section.background);
 
   // Set styles based on the active section index
-  props.index !== props.activeSection && classes.value.push("translate-y-full");
-  props.index === props.activeSection && classes.value.push("delay-300");
+  props.index !== props.activeSection && classes.value.push("delay-300 z-10");
+  props.index !== props.activeSection &&
+    props.index < props.activeSection &&
+    classes.value.push("-translate-y-full");
+  props.index !== props.activeSection &&
+    props.index > props.activeSection &&
+    classes.value.push("translate-y-full");
+  props.index === props.activeSection && classes.value.push("z-20");
 
   // Return the classes to the section
   return classes.value.join(" ");

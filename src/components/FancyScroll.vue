@@ -1,13 +1,15 @@
 <template>
-  <FancyScrollSection
-    v-for="(section, index) in sections"
-    :index="index"
-    :key="section.name"
-    :section="section"
-    :activeSection="activeSection"
-    :sectionCount="sectionCount"
-    @setActiveSection="setActiveSection"
-  />
+  <div class="relative">
+    <FancyScrollSection
+      v-for="(section, index) in sections"
+      :index="index"
+      :key="section.name"
+      :section="section"
+      :activeSection="activeSection"
+      :sectionCount="sectionCount"
+      @setActiveSection="setActiveSection"
+    />
+  </div>
 </template>
 
 <script setup>
@@ -18,7 +20,7 @@ const sections = computed(() => [
   {
     name: "introduction",
     display: "This is the introduction",
-    background: "bg-grey-500",
+    background: "bg-gray-500",
   },
   {
     name: "page-2",
