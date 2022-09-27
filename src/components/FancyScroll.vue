@@ -7,7 +7,9 @@
       :section="section"
       :activeSection="activeSection"
       :sectionCount="sectionCount"
+      :animating="animating"
       @setActiveSection="setActiveSection"
+      @setAnimating="setAnimating"
     />
   </div>
 </template>
@@ -15,6 +17,11 @@
 <script setup>
 import FancyScrollSection from "./fancy-scroll-section/FancyScrollSection.vue";
 import { computed, ref } from "vue";
+
+let animating = ref(false);
+function setAnimating(state) {
+  animating.value = state;
+}
 
 const sections = computed(() => [
   {

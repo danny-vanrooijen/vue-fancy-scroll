@@ -28,11 +28,20 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  animating: {
+    type: Boolean,
+    required: true,
+  },
 });
-const emit = defineEmits(["setActiveSection"]);
+const emit = defineEmits(["setActiveSection", "setAnimating"]);
 
 // Identify when user is scrolling inside section
 function scrollInsideSection(event) {
+  // If a section is already animating, return
+  if (props.animating) {
+    return;
+  }
+
   const scrollDirection = 100 / event.deltaY;
   const newActiveSection = props.activeSection + scrollDirection;
   // TODO: Check whether the content inside the section has reached the start or end
@@ -44,6 +53,12 @@ function scrollInsideSection(event) {
 
   // Scroll to the next or previous section depending on wheel direction
   emit("setActiveSection", newActiveSection);
+
+  // Set animating to true immediately, and false after 300ms
+  emit("setAnimating", true);
+  setTimeout(() => {
+    emit("setAnimating", false);
+  }, 300);
 }
 
 const setSectionStyling = computed(() => {
