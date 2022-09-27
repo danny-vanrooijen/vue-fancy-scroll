@@ -1,10 +1,12 @@
 <template>
   <section
-    class="h-screen w-full flex justify-center items-center text-2xl fixed transition-transform duration-300"
+    class="h-screen w-full flex justify-center text-2xl fixed transition-transform duration-300 overflow-y-auto py-20"
     :class="setSectionStyling"
     @wheel="scrollInsideSection"
   >
-    {{ section.display }}
+    <div class="w-[600px]">
+      <span v-html="section.display" />
+    </div>
   </section>
 </template>
 
@@ -82,3 +84,9 @@ const setSectionStyling = computed(() => {
   return classes.value.join(" ");
 });
 </script>
+
+<style lang="postcss">
+p + p {
+  @apply mt-8;
+}
+</style>
